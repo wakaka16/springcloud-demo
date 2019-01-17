@@ -1,0 +1,35 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    #    用户服务
+    name: user-service
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/springcloud-demo?characterEncoding=UTF-8
+    username:  root
+    password:  root
+    driverClassName: com.mysql.jdbc.Driver
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://localhost:9011/eureka
+      prefer-ip-address: true     #访问路径可以显示IP地址
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port} #主机名
+    hostname: ${spring.cloud.client.ipAddress}
+#        hostname: user-service-7001
+
+#info
+info:
+  app.name: 用户服务
+  company.name: 公司地址
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@

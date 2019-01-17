@@ -1,0 +1,27 @@
+server:
+  port: 6001
+
+spring:
+  application:
+    #    订单服务
+    name: order-service
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/springcloud-demo?characterEncoding=UTF-8
+    username:  root
+    password:  root
+    driverClassName: com.mysql.jdbc.Driver
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://localhost:9011/eureka
+      instance:
+        instance-id: order-service-6001
+        prefer-ip-address: true     #访问路径可以显示IP地址
